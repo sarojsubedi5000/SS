@@ -1,0 +1,6 @@
+ Flask
+ pandas
+ openpyxl 
+Werkzeug
+ nepali-datetime
+gunicorn
