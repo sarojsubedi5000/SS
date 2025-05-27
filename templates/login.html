@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://img.freepik.com/free-vector/technology-wire-mesh-network-connection-digital-background_1017-28407.jpg?t=st=1731910615~exp=1731914215~hmac=092deded0a47991631cd0f6f02aa4733f5d903e6efa0fd703bf43c5aba9e4efa&w=1060');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            animation: none;
+            position: relative;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4a90e2;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 99%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            width: 50%;
+            padding: 10px;
+            margin: 10px auto;
+            display: block;
+            border-radius: 5px;
+            background-color: #4a90e2;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357abd;
+        }
+
+        .footer {
+            margin-top: 10px;
+            text-align: center;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .emoji-container {
+            text-align: center;
+            font-size: 50px;
+            color: red;
+            margin-bottom: 10px;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="login-container">
+        <div class="emoji-container" id="emoji-container">😡</div>
+        <h2>Login</h2>
+        <form method="POST" action="/">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="submit" class="log" value="Login">
+            <div class="footer">
+                &copy; 2024 Saroj Subedi. All rights reserved
+            </div>
+            <div id="error-message" class="error"></div>
+        </form>
+    </div>
+
+    <script>
+        // Simulate server-side validation failure
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent actual form submission for demo
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            const emojiContainer = document.getElementById('emoji-container');
+
+            // Mock validation
+            if (username !== 'saroj' || password !== 'saroj@123') {
+                errorMessage.textContent = 'Invalid username or password.';
+                emojiContainer.style.display = 'block'; // Show angry emoji
+
+                // Shake animation for the login box
+                const loginContainer = document.getElementById('login-container');
+                loginContainer.classList.add('shake');
+
+                // Hide angry emoji and reset animation after 1.5 seconds
+                setTimeout(() => {
+                    emojiContainer.style.display = 'none';
+                    loginContainer.classList.remove('shake');
+                }, 1500);
+            } else {
+                errorMessage.textContent = '';
+                // Removed alert for successful login
+                this.submit(); // Uncomment in actual implementation to allow submission
+            }
+        });
+    </script>
+</body>
+</html>
